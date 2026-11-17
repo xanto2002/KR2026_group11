@@ -1,31 +1,31 @@
-name,types,hasFlavour,comment
-angostura_bitters,Bitters,bitter;herbal,
-baileys,AnimalProduct and Liqueur,sweet,
-campari,Liqueur and PlantBased,bitter;herbal,
-coffee_liqueur,Liqueur and PlantBased,sweet;bitter,
-cola,CarbonatedMixer,sweet,
-cranberry_juice,Juice,sour;fruity,
-cream,AnimalProduct and NonAlcoholicIngredient,plain,
-egg_white,AnimalProduct and NonAlcoholicIngredient,plain,
-espresso,NonAlcoholicIngredient and PlantBased,bitter,
-gin,Gin,herbal,
-ginger_ale,CarbonatedMixer,sweet,
-ginger_beer,CarbonatedMixer,sweet,
-grapefruit_juice,Juice,bitter;sour;citrus,
-grenadine,Sweetener and PlantBased,sweet;fruity,
-honey,AnimalProduct;Sweetener,sweet,
-lemon_juice,Juice,sour;citrus,
-lemon_soda,CarbonatedMixer,sweet;citrus,
-lime_juice,Juice,sour;citrus,
-mint,Herb,herbal,
-non_alcoholic_gin,NonAlcoholicSpirit,herbal,
-orange_juice,Juice,sweet;citrus;fruity,
-rum,Rum,sweet,
-soda_water,CarbonatedMixer,plain,
-sugar_syrup,PlantBased and Sweetener,sweet,
-sweet_vermouth,FortifiedWine,sweet;herbal,
-tequila,Tequila,bitter,
-tonic_water,CarbonatedMixer,bitter;sweet,
-triple_sec,Liqueur and PlantBased,sweet;citrus,
-vodka,Vodka,bitter,
-whiskey,Whiskey,sweet,
+name,types,hasFlavour
+angostura_bitters,Bitters,bitter;herbal
+baileys,AnimalProduct and Liqueur,sweet
+campari,Liqueur and PlantBased,bitter;herbal
+coffee_liqueur,Liqueur and PlantBased,sweet;bitter
+cola,CarbonatedMixer,sweet
+cranberry_juice,Juice,sour;fruity
+cream,AnimalProduct and NonAlcoholicIngredient,
+egg_white,AnimalProduct and NonAlcoholicIngredient,
+espresso,NonAlcoholicIngredient and PlantBased,bitter
+gin,Gin,herbal
+ginger_ale,CarbonatedMixer,sweet
+ginger_beer,CarbonatedMixer,sweet
+grapefruit_juice,Juice,bitter;sour;citrus
+grenadine,Sweetener and PlantBased,sweet;fruity
+honey,AnimalProduct and Sweetener,sweet
+lemon_juice,Juice,sour;citrus
+lemon_soda,CarbonatedMixer,sweet;citrus
+lime_juice,Juice,sour;citrus
+mint,Herb,herbal
+non_alcoholic_gin,NonAlcoholicSpirit,herbal
+orange_juice,Juice,sweet;citrus;fruity
+rum,Rum,sweet
+soda_water,CarbonatedMixer,
+sugar_syrup,PlantBased and Sweetener,sweet
+sweet_vermouth,FortifiedWine,sweet;herbal
+tequila,Tequila,bitter
+tonic_water,CarbonatedMixer,bitter
+triple_sec,Liqueur and PlantBased,sweet;citrus
+vodka,Vodka,bitter
+whiskey,Whiskey,sweet

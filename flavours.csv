@@ -1,8 +1,7 @@
-name,types,comment
-sweet,Flavour,
-sour,Flavour,
-bitter,Flavour,
-citrus,Flavour,
-fruity,Flavour,
-herbal,Flavour,
-plain,Flavour,
+name,types
+sweet,Flavour
+sour,Flavour
+bitter,Flavour
+citrus,Flavour
+fruity,Flavour
+herbal,Flavour
