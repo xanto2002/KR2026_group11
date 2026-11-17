@@ -154,6 +154,21 @@
          rdfs:subClassOf :Spirit .
 
 
+###  http://example.org/kr-group11/drinks#VeganDrink
+:VeganDrink rdf:type owl:Class ;
+            owl:equivalentClass [ owl:intersectionOf ( :Drink
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty :hasIngredient ;
+                                                         owl:allValuesFrom [ rdf:type owl:Class ;
+                                                                             owl:complementOf :AnimalProduct
+                                                                           ]
+                                                       ]
+                                                     ) ;
+                                  rdf:type owl:Class
+                                ] ;
+            rdfs:subClassOf :Drink .
+
+
 ###  http://example.org/kr-group11/drinks#Vodka
 :Vodka rdf:type owl:Class ;
        rdfs:subClassOf :Spirit .
@@ -177,6 +192,23 @@
                   ] .
 
 
+###  http://example.org/kr-group11/drinks#bees_knees
+:bees_knees rdf:type owl:NamedIndividual ,
+                     :Drink ,
+                     [ rdf:type owl:Restriction ;
+                       owl:onProperty :hasIngredient ;
+                       owl:allValuesFrom [ rdf:type owl:Class ;
+                                           owl:oneOf ( :gin
+                                                       :honey
+                                                       :lemon_juice
+                                                     )
+                                         ]
+                     ] ;
+            :hasIngredient :gin ,
+                           :honey ,
+                           :lemon_juice .
+
+
 ###  http://example.org/kr-group11/drinks#egg_white
 :egg_white rdf:type owl:NamedIndividual ,
                     [ owl:intersectionOf ( :AnimalProduct
@@ -193,21 +225,44 @@
 
 ###  http://example.org/kr-group11/drinks#gin_lemon
 :gin_lemon rdf:type owl:NamedIndividual ,
-                    :Drink ;
+                    :Drink ,
+                    [ rdf:type owl:Restriction ;
+                      owl:onProperty :hasIngredient ;
+                      owl:allValuesFrom [ rdf:type owl:Class ;
+                                          owl:oneOf ( :gin
+                                                      :lemon_soda
+                                                    )
+                                        ]
+                    ] ;
            :hasIngredient :gin ,
                           :lemon_soda .
 
 
 ###  http://example.org/kr-group11/drinks#gin_tonic
 :gin_tonic rdf:type owl:NamedIndividual ,
-                    :Drink ;
+                    :Drink ,
+                    [ rdf:type owl:Restriction ;
+                      owl:onProperty :hasIngredient ;
+                      owl:allValuesFrom [ rdf:type owl:Class ;
+                                          owl:oneOf ( :gin
+                                                      :tonic_water
+                                                    )
+                                        ]
+                    ] ;
            :hasIngredient :gin ,
                           :tonic_water .
 
 
 ###  http://example.org/kr-group11/drinks#glass_of_lemon_soda
 :glass_of_lemon_soda rdf:type owl:NamedIndividual ,
-                              :Drink ;
+                              :Drink ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasIngredient ;
+                                owl:allValuesFrom [ rdf:type owl:Class ;
+                                                    owl:oneOf ( :lemon_soda
+                                                              )
+                                                  ]
+                              ] ;
                      :hasIngredient :lemon_soda .
 
 
@@ -215,6 +270,11 @@
 :honey rdf:type owl:NamedIndividual ,
                 :AnimalProduct ,
                 :Sweetener .
+
+
+###  http://example.org/kr-group11/drinks#lemon_juice
+:lemon_juice rdf:type owl:NamedIndividual ,
+                      :Juice .
 
 
 ###  http://example.org/kr-group11/drinks#lemon_soda

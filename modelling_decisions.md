@@ -55,7 +55,7 @@ A modelling decision is a choice where the logic allows more than one valid mode
 1. Ingredient types are **primitive classes**: we assert their members, with `SubClass Of` (necessary conditions only).
 2. Drink types are **defined classes**: the reasoner classifies the drinks, with `Equivalent To` (necessary and sufficient conditions). Example: `AlcoholicDrink` Equivalent To `Drink and (hasIngredient some AlcoholicIngredient)`.
 
-**Example:** Long Island has `hasIngredient vodka`, `hasIngredient white_rum`, `hasIngredient gin`, ... and vodka is an `AlcoholicIngredient`, so the reasoner concludes that Long Island is an `AlcoholicDrink`.
+**Example (Long Island is planned, not yet in the KB):** Long Island has `hasIngredient vodka`, `hasIngredient white_rum`, `hasIngredient gin`, ... and vodka is an `AlcoholicIngredient`, so the reasoner concludes that Long Island is an `AlcoholicDrink`.
 
 **Why:**
 1. One source of truth: "alcoholic or not" is stored only on the ingredient, so drink and ingredient can never disagree.
@@ -89,7 +89,7 @@ A modelling decision is a choice where the logic allows more than one valid mode
 2. `vodka`: type `Vodka`
 3. `Gin` and `Vodka` are disjoint (sibling classes under `Spirit`)
 
-**Why we keep the classes:** disjoint classes make the individuals different. OWL has no **unique name assumption**: without more information, `gin` and `vodka` could be two names for the same object. But `gin` is a `Gin`, `vodka` is a `Vodka`, and the two classes are disjoint, so the reasoner knows they are two different objects. This way `StrongDrink` (at least 2 spirits) works for a drink like the Vesper (gin, vodka, Lillet) without an extra Different Individuals axiom for the spirits.
+**Why we keep the classes:** disjoint classes make the individuals different. OWL has no **unique name assumption**: without more information, `gin` and `vodka` could be two names for the same object. But `gin` is a `Gin`, `vodka` is a `Vodka`, and the two classes are disjoint, so the reasoner knows they are two different objects. This way `StrongDrink` (planned: at least 2 spirits) will work for a drink like the Vesper (gin, vodka, Lillet) without an extra Different Individuals axiom for the spirits.
 
 ## D6. Whole ingredient classes are plant-based
 
@@ -131,7 +131,7 @@ A modelling decision is a choice where the logic allows more than one valid mode
 3. `glass_of_lemon_soda`: `hasIngredient only {lemon_soda}`
 
 **Why:**
-1. Every definition with `only` needs to know that the list of ingredients is complete: `Mocktail` (all ingredients non-alcoholic) depends on it, and so will `VeganDrink` (planned: no animal ingredient).
+1. Every definition with `only` needs to know that the list of ingredients is complete: `Mocktail` (all ingredients non-alcoholic) and `VeganDrink` (no animal ingredient) both depend on it.
 2. Definitions with `some` (such as `AlcoholicDrink`) do not need it, but the closure does not break them: it only adds information, so the drinks that were alcoholic stay alcoholic.
 3. Applying the rule to all drinks keeps the KB uniform: every drink is described in the same way.
 
