@@ -110,3 +110,56 @@ A modelling decision is a choice where the logic allows more than one valid mode
 2. Under the **Open World Assumption**, "not an animal product" must be derivable. The positive fact (PlantBased) plus the disjointness gives the negative one.
 
 **Simplification (limit of the model):** in reality, some wines and spirits are clarified with animal products (for example gelatine or egg white). We ignore this and treat these classes as fully plant-based.
+
+## D7. Every drink gets a closure axiom
+
+**Date:** 11 November 2026
+
+**Origin:** decided after discovery **S1** ("Where are the mocktails?", see `discoveries.md`). In V1, `glass_of_lemon_soda` was not classified as a `Mocktail` because of the **Open World Assumption**. We fixed it with a closure axiom, and then realised that the same problem would happen again with every definition that uses `only`.
+
+**Question:** do we add a closure axiom only where we saw the problem, or to every drink?
+
+**Choice:** every drink gets a **closure axiom** that lists ALL its ingredients, next to its property assertions.
+
+**In OWL:** for each drink, the property assertions say what it HAS, and one extra type says it has NOTHING ELSE:
+1. Property assertions: `hasIngredient gin`, `hasIngredient tonic_water`
+2. Type (closure): `hasIngredient only {gin, tonic_water}`
+
+**Example:**
+1. `gin_tonic`: `hasIngredient only {gin, tonic_water}`
+2. `gin_lemon`: `hasIngredient only {gin, lemon_soda}`
+3. `glass_of_lemon_soda`: `hasIngredient only {lemon_soda}`
+
+**Why:**
+1. Every definition with `only` needs to know that the list of ingredients is complete: `Mocktail` (all ingredients non-alcoholic) depends on it, and so will `VeganDrink` (planned: no animal ingredient).
+2. Definitions with `some` (such as `AlcoholicDrink`) do not need it, but the closure does not break them: it only adds information, so the drinks that were alcoholic stay alcoholic.
+3. Applying the rule to all drinks keeps the KB uniform: every drink is described in the same way.
+
+**Cost:** each ingredient is written twice (assertion and closure). With 20 to 30 drinks this is repetitive, so it is a good candidate for Cellfie or a script.
+
+## D8. `hasIngredient` has a domain, `hasFlavour` will not
+
+**Date:** 11 November 2026
+
+**Question:** do we give a domain and a range to our properties?
+
+**Options:**
+
+| Option | Idea | Problem |
+| :- | :- | :- |
+| A | No domain and no range | The reasoner cannot catch a property used on the wrong kind of thing |
+| B | Domain and range on every property | A domain that is too narrow gives wrong types to individuals |
+| C | Decide for each property | We must think about every property |
+
+**Choice:** Option C.
+1. `hasIngredient`: domain `Drink`, range `Ingredient`.
+2. `hasFlavour` (planned): range `Flavour`, no domain.
+
+**In DL:** `∃hasIngredient.⊤ ⊑ Drink` and `⊤ ⊑ ∀hasIngredient.Ingredient`
+
+**Example:** if someone writes `gin hasIngredient juniper` by mistake, the reasoner concludes that `gin` is a `Drink`. But `gin` is also an `Ingredient`, and the two classes are disjoint (D1), so the ontology becomes inconsistent and we see the mistake.
+
+**Why:**
+1. A domain is not a check: it is an inference rule. It does not forbid anything, it adds a type to whatever uses the property.
+2. For `hasIngredient` this is what we want: only drinks have ingredients (D2), and together with D1 a wrong use becomes a visible inconsistency.
+3. For `hasFlavour` a domain of `Drink` would be wrong: ingredients have flavours too (`gin hasFlavour juniper`), so every ingredient with a flavour would become a `Drink` and break the KB.
