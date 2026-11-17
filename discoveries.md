@@ -49,3 +49,21 @@ These are problems we expect, but the reasoner has not shown them yet. An idea b
 2. `gin hasSignatureFlavour juniper` (only the typical one)
 
 Preferences then follow the signature flavour: liking gin means liking juniper, not citrus. A zero gin (also juniper) still matches, a lemon juice no longer does. We could make `hasSignatureFlavour` a sub property of `hasFlavour`, so every signature flavour is automatically also a normal flavour. The fix works only if the preference chain changes too: it must become `likesIngredient o hasSignatureFlavour`. If the chain still uses `hasFlavour`, the customer still "likes" citrus and nothing is fixed.
+
+### 2. "Does adding soda water make a cocktail plain?"
+
+**Date:** 17 November 2026
+
+**Status:** a worked logical example and a proposed reasoner test, not an observed reasoner result. The flavour propagation chain is still planned (D10), so there are no before/after ontology tags for this experiment yet.
+
+**The assumption to test:** the candidate label `plain` for soda water, cream and egg white describes a neutral ingredient. With unrestricted flavour propagation, that label would also transfer to any cocktail containing one of them.
+
+**Test setup:** create a test drink with `campari`, `lemon_juice` and `soda_water`. Campari supplies `bitter` and `herbal`; lemon juice supplies `sour` and `citrus`. Temporarily give soda water `hasFlavour plain` in a separate test ontology, then add the chain `hasIngredient o hasFlavour ⊑ hasFlavour`. Compare the inferred flavours with and without soda water.
+
+**Expected result:** without soda water, the drink inherits `bitter`, `herbal`, `sour` and `citrus`. Adding soda water with the candidate label makes the reasoner infer `hasFlavour plain` as well, while retaining all the other labels. The chain transfers every recorded label; it does not assess the overall taste or dilution.
+
+**Why this matters:** "contains a neutral ingredient" does not mean "the whole drink tastes plain". In this example, interpreting the inherited label as the overall taste would be misleading.
+
+**Decision:** we decided to **exclude `plain`** because it does not make sense as a flavour of a drink under this model. The current CSVs already reflect this choice: `plain` is absent from `flavours.csv`, and soda water, cream and egg white have no recorded flavour labels in `ingredients.csv`. Once the chain is implemented, they will contribute no recorded flavour labels, while the drink still inherits the flavours of its other ingredients. Empty cells do not assert that these ingredients have no possible flavours under the Open World Assumption.
+
+**Follow-up check:** when D10 is implemented, run the test in a separate ontology with the temporary `plain` assignment, then repeat without that assignment and check that `hasFlavour plain` is no longer inferred. The choice and its limits are documented in D9 and D10 of `modelling_decisions.md`.

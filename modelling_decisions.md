@@ -163,3 +163,55 @@ A modelling decision is a choice where the logic allows more than one valid mode
 1. A domain is not a check: it is an inference rule. It does not forbid anything, it adds a type to whatever uses the property.
 2. For `hasIngredient` this is what we want: only drinks have ingredients (D2), and together with D1 a wrong use becomes a visible inconsistency.
 3. For `hasFlavour` a domain of `Drink` would be wrong: ingredients have flavours too (`gin hasFlavour juniper`), so every ingredient with a flavour would become a `Drink` and break the KB.
+
+## D9. Flavours are qualitative, overlapping labels
+
+**Date:** 17 November 2026
+
+**Question:** are flavours exclusive categories, and what does a flavour label describe?
+
+**Choice:** `sweet`, `sour`, `bitter`, `citrus`, `fruity` and `herbal` are **individuals of `Flavour`**, as recorded in `flavours.csv`. An ingredient can have several `hasFlavour` assertions. These labels can occur together: `hasFlavour` is not functional, and having one flavour does not exclude another.
+
+**Example:** `lemon_juice` has both `sour` and `citrus`. If tonic water is assigned both `bitter` and `sweet`, both labels apply together. In the current `ingredients.csv`, `tonic_water` is assigned only `bitter`; the two-label tonic-water example is illustrative.
+
+**Simplification (limit of the model):** flavour descriptions are manually assigned qualitative labels. We do not represent intensity, quantities, dominant flavours, or changes caused by mixing ingredients. The labels describe our simplified model rather than a complete sensory profile.
+
+**Why we exclude `plain`:** the candidate label meant "contains a neutral ingredient" when propagated to a drink, but could easily be read as "the whole drink tastes plain". Those are different claims. A cocktail containing cream, egg white or soda water can still have strong flavours. We decided to exclude `plain` because it does not make sense as a drink flavour under unrestricted propagation (D10), and we do not need a separate neutral-ingredient label for our questions.
+
+**Current data:** `plain` is absent from `flavours.csv`, and cream, egg white and soda water have empty `hasFlavour` cells in `ingredients.csv`. An empty cell means **no flavour label is recorded**; under the Open World Assumption, it does not prove that the ingredient has no flavours.
+
+**Related experiment:** "Does adding soda water make a cocktail plain?" in `discoveries.md` records the proposed test and the reason for this decision.
+
+## D10. Drinks inherit every recorded flavour of their ingredients
+
+**Date:** 17 November 2026
+
+**Question:** which ingredient flavours should a drink inherit, and how do we classify drinks by flavour?
+
+**Choice:** every recorded flavour of every ingredient transfers to the drink, using the property chain introduced in D2:
+
+```text
+hasIngredient o hasFlavour ⊑ hasFlavour
+```
+
+If a drink has an ingredient and that ingredient has a flavour, the drink has that flavour. This is a property-chain inference supported by [OWL 2 object subproperty axioms](https://www.w3.org/TR/owl2-syntax/#Object_Subproperties).
+
+**Example:** a drink containing `lemon_juice` inherits both `sour` and `citrus`. A drink containing `tonic_water` inherits `bitter` from the current CSV. If `sweet` is also recorded for tonic water, the same chain makes the drink inherit both `bitter` and `sweet`.
+
+**Flavour classes (Manchester syntax):**
+
+```text
+SweetDrink EquivalentTo Drink and (hasFlavour value sweet)
+
+BitterDrink EquivalentTo Drink and (hasFlavour value bitter)
+
+HerbalDrink EquivalentTo Drink and (hasFlavour value herbal)
+```
+
+Here, `value sweet` refers to the **flavour individual** `sweet` in `flavours.csv`. It means that the drink has a `hasFlavour` link to that individual; it does not refer to a class named `sweet`. See [OWL 2 individual value restrictions](https://www.w3.org/TR/owl2-syntax/#Individual_Value_Restriction).
+
+**Overlapping classes:** these drink classes are not disjoint. The same drink can be a `SweetDrink`, a `BitterDrink` and a `HerbalDrink` if its ingredients supply all three labels.
+
+**Simplification (limit of the model):** even a small contribution from one ingredient is sufficient. The reasoner does not calculate the dominant taste, dilution, or whether one flavour masks another. Excluding `plain` (D9) avoids treating the presence of a neutral ingredient as a flavour of the whole drink.
+
+**Status:** the property chain and flavour-based drink classes are **planned**; they are not yet present in `KnowledgeBase-Drink.ttl`. The CSVs provide the ingredient flavour assignments for their implementation.
