@@ -1,29 +1,29 @@
-name,types,close,comment
-baileys_coffee,Drink,hasIngredient,
-bees_knees,Drink,hasIngredient,
-cola_with_lime,Drink,hasIngredient,mocktail with cola (CQ6)
-cosmopolitan,Drink,hasIngredient,
-cuba_libre,Drink,hasIngredient,
-espresso_martini,Drink,hasIngredient,
-gin_lemon,Drink,hasIngredient,
-gin_tonic,Drink,hasIngredient,
-glass_of_lemon_soda,Drink,hasIngredient,
-honey_lemonade,Drink,hasIngredient,Mocktail but not vegan (honey)
-lemon_lime_bitters,Drink,hasIngredient,alcoholic because of bitters (D4)
-lemonade,Drink,hasIngredient,
-long_island_iced_tea,Drink,hasIngredient,strong drink: 4 spirits (CQ4)
-margarita,Drink,hasIngredient,
-mojito,Drink,hasIngredient,
-moscow_mule,Drink,hasIngredient,
-na_gin_tonic,Drink,hasIngredient,substitute for gin_tonic (CQ10)
-negroni,Drink,hasIngredient,
-old_fashioned,Drink,hasIngredient,
-paloma,Drink,hasIngredient,
-screwdriver,Drink,hasIngredient,
-shirley_temple,Drink,hasIngredient,
-tequila_sunrise,Drink,hasIngredient,
-virgin_mojito,Drink,hasIngredient,
-virgin_mule,Drink,hasIngredient,
-virgin_sunrise,Drink,hasIngredient,
-whiskey_sour,Drink,hasIngredient,
-white_russian,Drink,hasIngredient,
+name,types,close
+baileys_coffee,Drink,hasIngredient
+bees_knees,Drink,hasIngredient
+cola_with_lime,Drink,hasIngredient
+cosmopolitan,Drink,hasIngredient
+cuba_libre,Drink,hasIngredient
+espresso_martini,Drink,hasIngredient
+gin_lemon,Drink,hasIngredient
+gin_tonic,Drink,hasIngredient
+glass_of_lemon_soda,Drink,hasIngredient
+honey_lemonade,Drink,hasIngredient
+lemon_lime_bitters,Drink,hasIngredient
+lemonade,Drink,hasIngredient
+long_island_iced_tea,Drink,hasIngredient
+margarita,Drink,hasIngredient
+mojito,Drink,hasIngredient
+moscow_mule,Drink,hasIngredient
+na_gin_tonic,Drink,hasIngredient
+negroni,Drink,hasIngredient
+old_fashioned,Drink,hasIngredient
+paloma,Drink,hasIngredient
+screwdriver,Drink,hasIngredient
+shirley_temple,Drink,hasIngredient
+tequila_sunrise,Drink,hasIngredient
+virgin_mojito,Drink,hasIngredient
+virgin_mule,Drink,hasIngredient
+virgin_sunrise,Drink,hasIngredient
+whiskey_sour,Drink,hasIngredient
+white_russian,Drink,hasIngredient
