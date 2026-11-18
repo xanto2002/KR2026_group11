@@ -87,7 +87,11 @@
 
 
 ###  http://example.org/kr-group11/drinks#Drink
-:Drink rdf:type owl:Class .
+:Drink rdf:type owl:Class ;
+       rdfs:subClassOf [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasIngredient ;
+                         owl:someValuesFrom :Ingredient
+                       ] .
 
 
 ###  http://example.org/kr-group11/drinks#DrinkForGinLover
