@@ -1,0 +1,7 @@
+name,types,likesIngredient,likesFlavour,dislikesFlavour
+eva,NonDrinker and NonVegan,,,sweet;bitter
+luca,Drinker and Vegan,gin,,
+marco,Drinker and NonVegan,gin,,
+noor,NonDrinker and NonVegan,,citrus;bitter,
+sara,NonDrinker and Vegan,,,
+tom,NonDrinker and NonVegan,,,sweet;citrus
