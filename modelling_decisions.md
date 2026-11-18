@@ -215,3 +215,46 @@ Here, `value sweet` refers to the **flavour individual** `sweet` in `flavours.cs
 **Simplification (limit of the model):** even a small contribution from one ingredient is sufficient. The reasoner does not calculate the dominant taste, dilution, or whether one flavour masks another. Excluding `plain` (D9) avoids treating the presence of a neutral ingredient as a flavour of the whole drink.
 
 **Status:** the property chain and flavour-based drink classes are **planned**; they are not yet present in `KnowledgeBase-Drink.ttl`. The CSVs provide the ingredient flavour assignments for their implementation.
+
+## D11. Every drink has at least one ingredient
+
+**Date:** 18 November 2026
+
+**Origin:** idea 3 in `discoveries.md` ("The empty drink is a vegan mocktail"). A drink whose recipe rows are forgotten gets the closure `hasIngredient only owl:Nothing`, and was then classified as both a `Mocktail` and a `VeganDrink`.
+
+**Question:** how do we stop a drink without ingredients from passing every definition with `only`?
+
+**Choice:** One rule on the class `Drink`: every drink has at least one ingredient | None for our data: every real drink has ingredients
+
+**In DL:** `Drink ⊑ ∃hasIngredient.Ingredient`
+
+**In OWL:** `Drink` SubClass Of `hasIngredient some Ingredient`
+
+**Example:** a drink with no recipe rows has the closure `hasIngredient only owl:Nothing` ("no ingredients"). Together with this rule ("at least one ingredient") this is a contradiction, so the ontology becomes inconsistent and the mistake is visible.
+
+**Why:**
+1. `only` is true when there is nothing to check, so a closure without ingredients satisfies every `only` definition (`Mocktail`, `VeganDrink`). `some` requires at least one ingredient to exist.
+2. Like D1 and D8, the rule turns a silent mistake into a visible inconsistency.
+3. It is written once, on the class, and holds for every drink we add later.
+4. It changes nothing for the current drinks: they all have ingredients, and the reasoner gives the same results as before (9 mocktails, 23 vegan drinks).
+
+
+## D12. Recipes are stored in a separate table
+
+**Date:** 17 November 2026
+
+**Question:** where do we write which ingredients each cocktail has?
+
+**Choice:** Two files: `cocktails.csv` (one row per cocktail) and `recipes.csv` (one row per cocktail and ingredient)
+
+**Example:**
+1. `cocktails.csv`: `negroni,Drink,hasIngredient`
+2. `recipes.csv`: `negroni,gin`, `negroni,campari`, `negroni,sweet_vermouth`
+
+From these rows, `build_kb.py` writes the three property assertions `hasIngredient gin`, `hasIngredient campari`, `hasIngredient sweet_vermouth`, and the closure `hasIngredient only {gin, campari, sweet_vermouth}` (D7).
+
+**Why:**
+1. Each fact is stored once: one row says that one cocktail contains one ingredient.
+2. The assertions and the closure axiom come from the same rows, so they can never disagree, and the closure cannot be forgotten (S1, D7).
+3. It answers the cost of D7: the repetitive part is done by the script, not by hand.
+4. Rows merge well in Git, so two people can add cocktails at the same time.

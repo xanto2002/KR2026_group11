@@ -67,3 +67,29 @@ Preferences then follow the signature flavour: liking gin means liking juniper, 
 **Decision:** we decided to **exclude `plain`** because it does not make sense as a flavour of a drink under this model. The current CSVs already reflect this choice: `plain` is absent from `flavours.csv`, and soda water, cream and egg white have no recorded flavour labels in `ingredients.csv`. Once the chain is implemented, they will contribute no recorded flavour labels, while the drink still inherits the flavours of its other ingredients. Empty cells do not assert that these ingredients have no possible flavours under the Open World Assumption.
 
 **Follow-up check:** when D10 is implemented, run the test in a separate ontology with the temporary `plain` assignment, then repeat without that assignment and check that `hasFlavour plain` is no longer inferred. The choice and its limits are documented in D9 and D10 of `modelling_decisions.md`.
+
+### 3. "The empty drink is a vegan mocktail"
+
+**Date:** 18 November 2026
+
+**Status:** tested on 18 November 2026 with a test drink. The fix is applied to `KnowledgeBase-Drink.ttl` (decision D11).
+
+**The idea:** with the recipes in a separate file, a cocktail can be added to `cocktails.csv` while its rows in `recipes.csv` are forgotten. Its closure axiom then says that it has no ingredients at all. We expected such an empty drink to be neither a Mocktail nor a VeganDrink, because nothing is known about it.
+
+**Test setup:** a test drink `new_drink` in `cocktails.csv` with `close = hasIngredient` and no rows in `recipes.csv`. Its closure axiom therefore became `hasIngredient only owl:Nothing`.
+
+**Definitions used:**
+1. `Mocktail` Equivalent To `Drink and (hasIngredient only NonAlcoholicIngredient)`
+2. `VeganDrink` Equivalent To `Drink and (hasIngredient only (not AnimalProduct))`
+
+**What happened:** the queries `Mocktail` and `VeganDrink` (Instances) both returned `new_drink`.
+
+**Why:** `only` means "every ingredient is ...". A drink with no ingredients has no ingredient that breaks this rule, so the condition is true (in logic it is *vacuously* true, like "all the cookies in an empty jar are chocolate cookies"). `only` never requires an ingredient to exist; only `some` does. Compare with S1: there the list of ingredients was not closed, so `only` could not be proven; here the list is closed, but empty, so `only` is proven for every class at once.
+
+**Fix (decision D11):** every drink must have at least one ingredient: `Drink SubClassOf hasIngredient some Ingredient`.
+
+**Result of the fix:** with `new_drink` still present, the reasoner reported the ontology as **inconsistent**, so the mistake became visible. After removing `new_drink`, the ontology was consistent again, with 9 mocktails and 23 vegan drinks, the same as before the fix.
+
+**Led to:** decision **D11** (see `modelling_decisions.md`).
+
+**For the comparison with the second formalism:** this is a modelling problem, not only an OWL problem. In Datalog, the rule `mocktail(D) :- drink(D), not alcoholic(D).` is also true for a drink with no ingredients, because no alcoholic ingredient is found. The fix there is to require an ingredient in the rule, for example `mocktail(D) :- drink(D), hasIngredient(D, _), not alcoholic(D).`

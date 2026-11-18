@@ -17,7 +17,7 @@ These are the questions the KB must be able to answer.
 2. Which drinks fit both Marco and Sara? DrinkForMarco and DrinkForSara
 3. Which drinks are vegan?
 4. Which drinks are strong (at least two different spirits)? StrongDrink
-5. Which drinks have both a citrus and a bitter taste?
+5. Which drinks have both a citrus and a bitter taste?(Bitter&Citrus)
 6. Is it a mistake to serve this drink to Sara?
     (Sara doesn't drink alcohol and is vegan.)
 7. Can a mocktail be strong?
