@@ -13,15 +13,15 @@ Some questions use test customers:
 ### Competency Questions
 These are the questions the KB must be able to answer.
 
-1. Which drinks can Sara drink?
-2. Which drinks fit both Marco and Sara?
+1. Which drinks can Sara drink? DrinkForSara
+2. Which drinks fit both Marco and Sara? DrinkForMarco and DrinkForSara
 3. Which drinks are vegan?
-4. Which drinks are strong (at least two different spirits)?
+4. Which drinks are strong (at least two different spirits)? StrongDrink
 5. Which drinks have both a citrus and a bitter taste?
 6. Is it a mistake to serve this drink to Sara?
     (Sara doesn't drink alcohol and is vegan.)
 7. Can a mocktail be strong?
 8. Which drinks would a customer who likes gin enjoy, based on the flavours of gin?
 9. Is there a customer for whom no drink fits? (an empty answer is interesting too)
-10. Which non-alcoholic drink could replace a gin tonic?
+10. Which non-alcoholic drink could replace a gin tonic? 
     (A drink replaces another one if it is non-alcoholic and shares its signature flavour.)
