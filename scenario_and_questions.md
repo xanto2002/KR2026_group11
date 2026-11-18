@@ -18,7 +18,8 @@ These are the questions the KB must be able to answer.
 3. Which drinks are vegan?
 4. Which drinks are strong (at least two different spirits)?
 5. Which drinks have both a citrus and a bitter taste?
-6. Which drinks look non-alcoholic but contain a hidden alcoholic ingredient?
+6. Is it a mistake to serve this drink to Sara?
+    (Sara doesn't drink alcohol and is vegan.)
 7. Can a mocktail be strong?
 8. Which drinks would a customer who likes gin enjoy, based on the flavours of gin?
 9. Is there a customer for whom no drink fits? (an empty answer is interesting too)
