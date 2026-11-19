@@ -326,7 +326,15 @@
 
 ###  http://example.org/kr-group11/drinks#angostura_bitters
 :angostura_bitters rdf:type owl:NamedIndividual ,
-                            :Bitters ;
+                            :Bitters ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasFlavour ;
+                              owl:allValuesFrom [ rdf:type owl:Class ;
+                                                  owl:oneOf ( :bitter
+                                                              :herbal
+                                                            )
+                                                ]
+                            ] ;
                    :hasFlavour :bitter ,
                                :herbal .
 
@@ -337,6 +345,13 @@
                                          :Liqueur
                                        ) ;
                     rdf:type owl:Class
+                  ] ,
+                  [ rdf:type owl:Restriction ;
+                    owl:onProperty :hasFlavour ;
+                    owl:allValuesFrom [ rdf:type owl:Class ;
+                                        owl:oneOf ( :sweet
+                                                  )
+                                      ]
                   ] ;
          :hasFlavour :sweet .
 
@@ -384,6 +399,14 @@
                                          :PlantBased
                                        ) ;
                     rdf:type owl:Class
+                  ] ,
+                  [ rdf:type owl:Restriction ;
+                    owl:onProperty :hasFlavour ;
+                    owl:allValuesFrom [ rdf:type owl:Class ;
+                                        owl:oneOf ( :bitter
+                                                    :herbal
+                                                  )
+                                      ]
                   ] ;
          :hasFlavour :bitter ,
                      :herbal .
@@ -400,6 +423,14 @@
                                                 :PlantBased
                                               ) ;
                            rdf:type owl:Class
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasFlavour ;
+                           owl:allValuesFrom [ rdf:type owl:Class ;
+                                               owl:oneOf ( :bitter
+                                                           :sweet
+                                                         )
+                                             ]
                          ] ;
                 :hasFlavour :bitter ,
                             :sweet .
@@ -407,7 +438,14 @@
 
 ###  http://example.org/kr-group11/drinks#cola
 :cola rdf:type owl:NamedIndividual ,
-               :CarbonatedMixer ;
+               :CarbonatedMixer ,
+               [ rdf:type owl:Restriction ;
+                 owl:onProperty :hasFlavour ;
+                 owl:allValuesFrom [ rdf:type owl:Class ;
+                                     owl:oneOf ( :sweet
+                                               )
+                                   ]
+               ] ;
       :hasFlavour :sweet .
 
 
@@ -447,7 +485,15 @@
 
 ###  http://example.org/kr-group11/drinks#cranberry_juice
 :cranberry_juice rdf:type owl:NamedIndividual ,
-                          :Juice ;
+                          :Juice ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasFlavour ;
+                            owl:allValuesFrom [ rdf:type owl:Class ;
+                                                owl:oneOf ( :fruity
+                                                            :sour
+                                                          )
+                                              ]
+                          ] ;
                  :hasFlavour :fruity ,
                              :sour .
 
@@ -458,6 +504,10 @@
                                        :NonAlcoholicIngredient
                                      ) ;
                   rdf:type owl:Class
+                ] ,
+                [ rdf:type owl:Restriction ;
+                  owl:onProperty :hasFlavour ;
+                  owl:allValuesFrom owl:Nothing
                 ] .
 
 
@@ -484,6 +534,10 @@
                                            :NonAlcoholicIngredient
                                          ) ;
                       rdf:type owl:Class
+                    ] ,
+                    [ rdf:type owl:Restriction ;
+                      owl:onProperty :hasFlavour ;
+                      owl:allValuesFrom owl:Nothing
                     ] .
 
 
@@ -493,6 +547,13 @@
                                           :PlantBased
                                         ) ;
                      rdf:type owl:Class
+                   ] ,
+                   [ rdf:type owl:Restriction ;
+                     owl:onProperty :hasFlavour ;
+                     owl:allValuesFrom [ rdf:type owl:Class ;
+                                         owl:oneOf ( :bitter
+                                                   )
+                                       ]
                    ] ;
           :hasFlavour :bitter .
 
@@ -534,7 +595,14 @@
 
 ###  http://example.org/kr-group11/drinks#gin
 :gin rdf:type owl:NamedIndividual ,
-              :Gin ;
+              :Gin ,
+              [ rdf:type owl:Restriction ;
+                owl:onProperty :hasFlavour ;
+                owl:allValuesFrom [ rdf:type owl:Class ;
+                                    owl:oneOf ( :herbal
+                                              )
+                                  ]
+              ] ;
      :hasFlavour :herbal .
 
 
@@ -570,13 +638,27 @@
 
 ###  http://example.org/kr-group11/drinks#ginger_ale
 :ginger_ale rdf:type owl:NamedIndividual ,
-                     :CarbonatedMixer ;
+                     :CarbonatedMixer ,
+                     [ rdf:type owl:Restriction ;
+                       owl:onProperty :hasFlavour ;
+                       owl:allValuesFrom [ rdf:type owl:Class ;
+                                           owl:oneOf ( :sweet
+                                                     )
+                                         ]
+                     ] ;
             :hasFlavour :sweet .
 
 
 ###  http://example.org/kr-group11/drinks#ginger_beer
 :ginger_beer rdf:type owl:NamedIndividual ,
-                      :CarbonatedMixer ;
+                      :CarbonatedMixer ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasFlavour ;
+                        owl:allValuesFrom [ rdf:type owl:Class ;
+                                            owl:oneOf ( :sweet
+                                                      )
+                                          ]
+                      ] ;
              :hasFlavour :sweet .
 
 
@@ -595,7 +677,16 @@
 
 ###  http://example.org/kr-group11/drinks#grapefruit_juice
 :grapefruit_juice rdf:type owl:NamedIndividual ,
-                           :Juice ;
+                           :Juice ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasFlavour ;
+                             owl:allValuesFrom [ rdf:type owl:Class ;
+                                                 owl:oneOf ( :bitter
+                                                             :citrus
+                                                             :sour
+                                                           )
+                                               ]
+                           ] ;
                   :hasFlavour :bitter ,
                               :citrus ,
                               :sour .
@@ -607,6 +698,14 @@
                                            :Sweetener
                                          ) ;
                       rdf:type owl:Class
+                    ] ,
+                    [ rdf:type owl:Restriction ;
+                      owl:onProperty :hasFlavour ;
+                      owl:allValuesFrom [ rdf:type owl:Class ;
+                                          owl:oneOf ( :fruity
+                                                      :sweet
+                                                    )
+                                        ]
                     ] ;
            :hasFlavour :fruity ,
                        :sweet .
@@ -625,6 +724,13 @@
                                        :Sweetener
                                      ) ;
                   rdf:type owl:Class
+                ] ,
+                [ rdf:type owl:Restriction ;
+                  owl:onProperty :hasFlavour ;
+                  owl:allValuesFrom [ rdf:type owl:Class ;
+                                      owl:oneOf ( :sweet
+                                                )
+                                    ]
                 ] ;
        :hasFlavour :sweet .
 
@@ -648,7 +754,15 @@
 
 ###  http://example.org/kr-group11/drinks#lemon_juice
 :lemon_juice rdf:type owl:NamedIndividual ,
-                      :Juice ;
+                      :Juice ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasFlavour ;
+                        owl:allValuesFrom [ rdf:type owl:Class ;
+                                            owl:oneOf ( :citrus
+                                                        :sour
+                                                      )
+                                          ]
+                      ] ;
              :hasFlavour :citrus ,
                          :sour .
 
@@ -672,7 +786,15 @@
 
 ###  http://example.org/kr-group11/drinks#lemon_soda
 :lemon_soda rdf:type owl:NamedIndividual ,
-                     :CarbonatedMixer ;
+                     :CarbonatedMixer ,
+                     [ rdf:type owl:Restriction ;
+                       owl:onProperty :hasFlavour ;
+                       owl:allValuesFrom [ rdf:type owl:Class ;
+                                           owl:oneOf ( :citrus
+                                                       :sweet
+                                                     )
+                                         ]
+                     ] ;
             :hasFlavour :citrus ,
                         :sweet .
 
@@ -696,7 +818,15 @@
 
 ###  http://example.org/kr-group11/drinks#lime_juice
 :lime_juice rdf:type owl:NamedIndividual ,
-                     :Juice ;
+                     :Juice ,
+                     [ rdf:type owl:Restriction ;
+                       owl:onProperty :hasFlavour ;
+                       owl:allValuesFrom [ rdf:type owl:Class ;
+                                           owl:oneOf ( :citrus
+                                                       :sour
+                                                     )
+                                         ]
+                     ] ;
             :hasFlavour :citrus ,
                         :sour .
 
@@ -765,7 +895,14 @@
 
 ###  http://example.org/kr-group11/drinks#mint
 :mint rdf:type owl:NamedIndividual ,
-               :Herb ;
+               :Herb ,
+               [ rdf:type owl:Restriction ;
+                 owl:onProperty :hasFlavour ;
+                 owl:allValuesFrom [ rdf:type owl:Class ;
+                                     owl:oneOf ( :herbal
+                                               )
+                                   ]
+               ] ;
       :hasFlavour :herbal .
 
 
@@ -841,7 +978,14 @@
 
 ###  http://example.org/kr-group11/drinks#non_alcoholic_gin
 :non_alcoholic_gin rdf:type owl:NamedIndividual ,
-                            :NonAlcoholicSpirit ;
+                            :NonAlcoholicSpirit ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasFlavour ;
+                              owl:allValuesFrom [ rdf:type owl:Class ;
+                                                  owl:oneOf ( :herbal
+                                                            )
+                                                ]
+                            ] ;
                    :hasFlavour :herbal .
 
 
@@ -875,7 +1019,16 @@
 
 ###  http://example.org/kr-group11/drinks#orange_juice
 :orange_juice rdf:type owl:NamedIndividual ,
-                       :Juice ;
+                       :Juice ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasFlavour ;
+                         owl:allValuesFrom [ rdf:type owl:Class ;
+                                             owl:oneOf ( :citrus
+                                                         :fruity
+                                                         :sweet
+                                                       )
+                                           ]
+                       ] ;
               :hasFlavour :citrus ,
                           :fruity ,
                           :sweet .
@@ -900,7 +1053,14 @@
 
 ###  http://example.org/kr-group11/drinks#rum
 :rum rdf:type owl:NamedIndividual ,
-              :Rum ;
+              :Rum ,
+              [ rdf:type owl:Restriction ;
+                owl:onProperty :hasFlavour ;
+                owl:allValuesFrom [ rdf:type owl:Class ;
+                                    owl:oneOf ( :sweet
+                                              )
+                                  ]
+              ] ;
      :hasFlavour :sweet .
 
 
@@ -945,7 +1105,11 @@
 
 ###  http://example.org/kr-group11/drinks#soda_water
 :soda_water rdf:type owl:NamedIndividual ,
-                     :CarbonatedMixer .
+                     :CarbonatedMixer ,
+                     [ rdf:type owl:Restriction ;
+                       owl:onProperty :hasFlavour ;
+                       owl:allValuesFrom owl:Nothing
+                     ] .
 
 
 ###  http://example.org/kr-group11/drinks#sour
@@ -959,6 +1123,13 @@
                                              :Sweetener
                                            ) ;
                         rdf:type owl:Class
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasFlavour ;
+                        owl:allValuesFrom [ rdf:type owl:Class ;
+                                            owl:oneOf ( :sweet
+                                                      )
+                                          ]
                       ] ;
              :hasFlavour :sweet .
 
@@ -970,14 +1141,29 @@
 
 ###  http://example.org/kr-group11/drinks#sweet_vermouth
 :sweet_vermouth rdf:type owl:NamedIndividual ,
-                         :FortifiedWine ;
+                         :FortifiedWine ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasFlavour ;
+                           owl:allValuesFrom [ rdf:type owl:Class ;
+                                               owl:oneOf ( :herbal
+                                                           :sweet
+                                                         )
+                                             ]
+                         ] ;
                 :hasFlavour :herbal ,
                             :sweet .
 
 
 ###  http://example.org/kr-group11/drinks#tequila
 :tequila rdf:type owl:NamedIndividual ,
-                  :Tequila ;
+                  :Tequila ,
+                  [ rdf:type owl:Restriction ;
+                    owl:onProperty :hasFlavour ;
+                    owl:allValuesFrom [ rdf:type owl:Class ;
+                                        owl:oneOf ( :bitter
+                                                  )
+                                      ]
+                  ] ;
          :hasFlavour :bitter .
 
 
@@ -1011,7 +1197,14 @@
 
 ###  http://example.org/kr-group11/drinks#tonic_water
 :tonic_water rdf:type owl:NamedIndividual ,
-                      :CarbonatedMixer ;
+                      :CarbonatedMixer ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasFlavour ;
+                        owl:allValuesFrom [ rdf:type owl:Class ;
+                                            owl:oneOf ( :bitter
+                                                      )
+                                          ]
+                      ] ;
              :hasFlavour :bitter .
 
 
@@ -1021,6 +1214,14 @@
                                             :PlantBased
                                           ) ;
                        rdf:type owl:Class
+                     ] ,
+                     [ rdf:type owl:Restriction ;
+                       owl:onProperty :hasFlavour ;
+                       owl:allValuesFrom [ rdf:type owl:Class ;
+                                           owl:oneOf ( :citrus
+                                                       :sweet
+                                                     )
+                                         ]
                      ] ;
             :hasFlavour :citrus ,
                         :sweet .
@@ -1077,13 +1278,27 @@
 
 ###  http://example.org/kr-group11/drinks#vodka
 :vodka rdf:type owl:NamedIndividual ,
-                :Vodka ;
+                :Vodka ,
+                [ rdf:type owl:Restriction ;
+                  owl:onProperty :hasFlavour ;
+                  owl:allValuesFrom [ rdf:type owl:Class ;
+                                      owl:oneOf ( :bitter
+                                                )
+                                    ]
+                ] ;
        :hasFlavour :bitter .
 
 
 ###  http://example.org/kr-group11/drinks#whiskey
 :whiskey rdf:type owl:NamedIndividual ,
-                  :Whiskey ;
+                  :Whiskey ,
+                  [ rdf:type owl:Restriction ;
+                    owl:onProperty :hasFlavour ;
+                    owl:allValuesFrom [ rdf:type owl:Class ;
+                                        owl:oneOf ( :sweet
+                                                  )
+                                      ]
+                  ] ;
          :hasFlavour :sweet .
 
 
@@ -1162,6 +1377,17 @@
                 :Vodka
                 :Whiskey
               )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :bitter
+                        :citrus
+                        :fruity
+                        :herbal
+                        :sour
+                        :sweet
+                      )
 ] .
 
 
