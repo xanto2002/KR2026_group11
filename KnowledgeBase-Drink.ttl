@@ -179,6 +179,26 @@
                        ] .
 
 
+###  http://example.org/kr-group11/drinks#DrinkForEva
+:DrinkForEva rdf:type owl:Class ;
+             owl:equivalentClass [ owl:intersectionOf ( :Mocktail
+                                                        [ rdf:type owl:Class ;
+                                                          owl:complementOf [ rdf:type owl:Restriction ;
+                                                                             owl:onProperty :hasFlavour ;
+                                                                             owl:hasValue :bitter
+                                                                           ]
+                                                        ]
+                                                        [ rdf:type owl:Class ;
+                                                          owl:complementOf [ rdf:type owl:Restriction ;
+                                                                             owl:onProperty :hasFlavour ;
+                                                                             owl:hasValue :sweet
+                                                                           ]
+                                                        ]
+                                                      ) ;
+                                   rdf:type owl:Class
+                                 ] .
+
+
 ###  http://example.org/kr-group11/drinks#DrinkForGinLover
 :DrinkForGinLover rdf:type owl:Class ;
                   owl:equivalentClass [ owl:intersectionOf ( :Drink
@@ -193,6 +213,26 @@
                                                            ) ;
                                         rdf:type owl:Class
                                       ] .
+
+
+###  http://example.org/kr-group11/drinks#DrinkForLuca
+:DrinkForLuca rdf:type owl:Class ;
+              owl:equivalentClass [ owl:intersectionOf ( :VeganDrink
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty :hasFlavour ;
+                                                           owl:someValuesFrom [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty [ owl:inverseOf :hasFlavour
+                                                                                               ] ;
+                                                                                owl:someValuesFrom [ rdf:type owl:Restriction ;
+                                                                                                     owl:onProperty [ owl:inverseOf :likesIngredient
+                                                                                                                    ] ;
+                                                                                                     owl:hasValue :luca
+                                                                                                   ]
+                                                                              ]
+                                                         ]
+                                                       ) ;
+                                    rdf:type owl:Class
+                                  ] .
 
 
 ###  http://example.org/kr-group11/drinks#DrinkForMarco
@@ -215,6 +255,22 @@
                                    ] .
 
 
+###  http://example.org/kr-group11/drinks#DrinkForNoor
+:DrinkForNoor rdf:type owl:Class ;
+              owl:equivalentClass [ owl:intersectionOf ( :Mocktail
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty :hasFlavour ;
+                                                           owl:someValuesFrom [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty [ owl:inverseOf :likesFlavour
+                                                                                               ] ;
+                                                                                owl:hasValue :noor
+                                                                              ]
+                                                         ]
+                                                       ) ;
+                                    rdf:type owl:Class
+                                  ] .
+
+
 ###  http://example.org/kr-group11/drinks#DrinkForSara
 :DrinkForSara rdf:type owl:Class ;
               owl:equivalentClass [ owl:intersectionOf ( :Mocktail
@@ -222,6 +278,26 @@
                                                        ) ;
                                     rdf:type owl:Class
                                   ] .
+
+
+###  http://example.org/kr-group11/drinks#DrinkForTom
+:DrinkForTom rdf:type owl:Class ;
+             owl:equivalentClass [ owl:intersectionOf ( :Mocktail
+                                                        [ rdf:type owl:Class ;
+                                                          owl:complementOf [ rdf:type owl:Restriction ;
+                                                                             owl:onProperty :hasFlavour ;
+                                                                             owl:hasValue :citrus
+                                                                           ]
+                                                        ]
+                                                        [ rdf:type owl:Class ;
+                                                          owl:complementOf [ rdf:type owl:Restriction ;
+                                                                             owl:onProperty :hasFlavour ;
+                                                                             owl:hasValue :sweet
+                                                                           ]
+                                                        ]
+                                                      ) ;
+                                   rdf:type owl:Class
+                                 ] .
 
 
 ###  http://example.org/kr-group11/drinks#Drinker
