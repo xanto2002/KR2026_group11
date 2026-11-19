@@ -23,5 +23,4 @@ These are the questions the KB must be able to answer.
 7. Can a mocktail be strong?Anto
 8. Which drinks would a customer who likes gin enjoy, based on the flavours of gin? Eren
 9. Is there a customer for whom no drink fits? (an empty answer is interesting too) milli
-10. Which non-alcoholic drink could replace a gin tonic? 
-    (A drink replaces another one if it is non-alcoholic and shares its signature flavour.) Eren
+10. Which non-alcoholic drink could replace a gin tonic? Eren

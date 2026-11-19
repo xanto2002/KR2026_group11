@@ -94,6 +94,22 @@
                        ] .
 
 
+###  http://example.org/kr-group11/drinks#DrinkForGinLover
+:DrinkForGinLover rdf:type owl:Class ;
+                  owl:equivalentClass [ owl:intersectionOf ( :Drink
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty :hasFlavour ;
+                                                               owl:someValuesFrom [ rdf:type owl:Restriction ;
+                                                                                    owl:onProperty [ owl:inverseOf :hasFlavour
+                                                                                                   ] ;
+                                                                                    owl:hasValue :gin
+                                                                                  ]
+                                                             ]
+                                                           ) ;
+                                        rdf:type owl:Class
+                                      ] .
+
+
 ###  http://example.org/kr-group11/drinks#DrinkForMarco
 :DrinkForMarco rdf:type owl:Class ;
                owl:equivalentClass [ owl:intersectionOf ( :Drink
@@ -207,6 +223,37 @@
 ###  http://example.org/kr-group11/drinks#PlantBased
 :PlantBased rdf:type owl:Class ;
             rdfs:subClassOf :Ingredient .
+
+
+###  http://example.org/kr-group11/drinks#ReplacementForGinTonic
+:ReplacementForGinTonic rdf:type owl:Class ;
+                        owl:equivalentClass [ owl:intersectionOf ( :Mocktail
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty :hasIngredient ;
+                                                                     owl:someValuesFrom [ owl:intersectionOf ( :NonAlcoholicSpirit
+                                                                                                               [ rdf:type owl:Restriction ;
+                                                                                                                 owl:onProperty :hasFlavour ;
+                                                                                                                 owl:someValuesFrom [ rdf:type owl:Restriction ;
+                                                                                                                                      owl:onProperty [ owl:inverseOf :hasFlavour
+                                                                                                                                                     ] ;
+                                                                                                                                      owl:someValuesFrom [ owl:intersectionOf ( :Spirit
+                                                                                                                                                                                [ rdf:type owl:Restriction ;
+                                                                                                                                                                                  owl:onProperty [ owl:inverseOf :hasIngredient
+                                                                                                                                                                                                 ] ;
+                                                                                                                                                                                  owl:hasValue :gin_tonic
+                                                                                                                                                                                ]
+                                                                                                                                                                              ) ;
+                                                                                                                                                           rdf:type owl:Class
+                                                                                                                                                         ]
+                                                                                                                                    ]
+                                                                                                               ]
+                                                                                                             ) ;
+                                                                                          rdf:type owl:Class
+                                                                                        ]
+                                                                   ]
+                                                                 ) ;
+                                              rdf:type owl:Class
+                                            ] .
 
 
 ###  http://example.org/kr-group11/drinks#Rum
