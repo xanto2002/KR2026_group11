@@ -33,6 +33,13 @@
                rdfs:range :Ingredient .
 
 
+###  http://example.org/kr-group11/drinks#isServed
+:isServed rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf owl:topObjectProperty ;
+          rdfs:domain :Person ;
+          rdfs:range :Drink .
+
+
 ###  http://example.org/kr-group11/drinks#likesFlavour
 :likesFlavour rdf:type owl:ObjectProperty ;
               rdfs:domain :Person ;
@@ -84,6 +91,84 @@
 :CarbonatedMixer rdf:type owl:Class ;
                  rdfs:subClassOf :NonAlcoholicIngredient ,
                                  :PlantBased .
+
+
+###  http://example.org/kr-group11/drinks#DislikesBitter
+:DislikesBitter rdf:type owl:Class ;
+                owl:equivalentClass [ owl:intersectionOf ( :Person
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :dislikesFlavour ;
+                                                             owl:hasValue :bitter
+                                                           ]
+                                                         ) ;
+                                      rdf:type owl:Class
+                                    ] ;
+                rdfs:subClassOf :Person .
+
+
+###  http://example.org/kr-group11/drinks#DislikesCitrus
+:DislikesCitrus rdf:type owl:Class ;
+                owl:equivalentClass [ owl:intersectionOf ( :Person
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :dislikesFlavour ;
+                                                             owl:hasValue :citrus
+                                                           ]
+                                                         ) ;
+                                      rdf:type owl:Class
+                                    ] ;
+                rdfs:subClassOf :Person .
+
+
+###  http://example.org/kr-group11/drinks#DislikesFruity
+:DislikesFruity rdf:type owl:Class ;
+                owl:equivalentClass [ owl:intersectionOf ( :Person
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :dislikesFlavour ;
+                                                             owl:hasValue :fruity
+                                                           ]
+                                                         ) ;
+                                      rdf:type owl:Class
+                                    ] ;
+                rdfs:subClassOf :Person .
+
+
+###  http://example.org/kr-group11/drinks#DislikesHerbal
+:DislikesHerbal rdf:type owl:Class ;
+                owl:equivalentClass [ owl:intersectionOf ( :Person
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :dislikesFlavour ;
+                                                             owl:hasValue :herbal
+                                                           ]
+                                                         ) ;
+                                      rdf:type owl:Class
+                                    ] ;
+                rdfs:subClassOf :Person .
+
+
+###  http://example.org/kr-group11/drinks#DislikesSour
+:DislikesSour rdf:type owl:Class ;
+              owl:equivalentClass [ owl:intersectionOf ( :Person
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty :dislikesFlavour ;
+                                                           owl:hasValue :sour
+                                                         ]
+                                                       ) ;
+                                    rdf:type owl:Class
+                                  ] ;
+              rdfs:subClassOf :Person .
+
+
+###  http://example.org/kr-group11/drinks#DislikesSweet
+:DislikesSweet rdf:type owl:Class ;
+               owl:equivalentClass [ owl:intersectionOf ( :Person
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :dislikesFlavour ;
+                                                            owl:hasValue :sweet
+                                                          ]
+                                                        ) ;
+                                     rdf:type owl:Class
+                                   ] ;
+               rdfs:subClassOf :Person .
 
 
 ###  http://example.org/kr-group11/drinks#Drink
@@ -207,7 +292,11 @@
 
 ###  http://example.org/kr-group11/drinks#NonDrinker
 :NonDrinker rdf:type owl:Class ;
-            rdfs:subClassOf :Person .
+            rdfs:subClassOf :Person ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :isServed ;
+                              owl:allValuesFrom :Mocktail
+                            ] .
 
 
 ###  http://example.org/kr-group11/drinks#NonVegan
@@ -292,7 +381,11 @@
 
 ###  http://example.org/kr-group11/drinks#Vegan
 :Vegan rdf:type owl:Class ;
-       rdfs:subClassOf :Person .
+       rdfs:subClassOf :Person ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :isServed ;
+                         owl:allValuesFrom :VeganDrink
+                       ] .
 
 
 ###  http://example.org/kr-group11/drinks#VeganDrink
